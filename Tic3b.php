@@ -32,10 +32,12 @@ function sieg($a,$spiel){
 </head>
 <body>
 <?php
-
+if($game==0){
+    $x=0;
+    $y=0;
+}
 // Laden des letzen Spielstands
 $spiel = unserialize(base64_decode($_POST["1a"]));
-
 
 // Setzen des letzen Zugs
 
@@ -111,6 +113,12 @@ while(true) {                                                                   
     if($sieger=="X"||$sieger=="O") {
         $message = $sieger ." hat gewonnen";
     }
+        if($sieger=="X"){
+            $y++;
+        }
+        elseif($sieger=="O"){
+            $x++;
+        }
     // echo"<pre>";
     // var_dump($game);
     // echo"</pre>";
@@ -148,12 +156,15 @@ while(true) {                                                                   
 ?>
 <!-- Senden des letzten Spielstands -->
 <input type="hidden" name="1a" value="<?php echo base64_encode(serialize($spiel))?>">
-<input type="hidden" name="zahl1" value="<?php echo base64_encode(serialize($zahl))?>">
+<input type="hidden" name="x" value="<?php $x ?>">
+<input type="hidden" name="y" value="<?php $y ?>">
 
     <?php 
     if(!empty($message)) {
-        echo "<br><input name='text' id='text' value=' $message' readonly> ";
+        echo "<input name='text' id='text' value=' $message' readonly> ";
+        echo "<br>";
     }
+    echo "<input name='Spielstand' id='spielstand' value='KI :$x  Spieler :$y' readonly>";
     ?>
 </form>
 
