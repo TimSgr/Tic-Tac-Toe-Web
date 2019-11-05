@@ -128,7 +128,7 @@ while(true) {                                                                   
 
 ?>
 <!-- Senden des neuen Zugs -->
-<div> 
+
 <input type="submit" id="button01"  name="A1" value="<?php echo $spiel[0][0] ?>" <?php echo !empty($spiel[0][0]) ? "disabled" : $disabled ; ?>>
 <input type="submit" id="button02"  name="A2" value="<?php echo $spiel[0][1] ?>" <?php echo !empty($spiel[0][1]) ? "disabled" : $disabled ;?>>
 <input type="submit" id="button03" name="A3" value="<?php echo $spiel[0][2] ?>"  <?php echo !empty($spiel[0][2]) ? "disabled" : $disabled ;?>> <br> <br>
@@ -138,7 +138,7 @@ while(true) {                                                                   
 <input type="submit" id="button07"  name="C1" value="<?php echo $spiel[2][0] ?>" <?php echo !empty($spiel[2][0]) ? "disabled" : $disabled ;?>>
 <input type="submit" id="button08"  name="C2" value="<?php echo $spiel[2][1] ?>" <?php echo !empty($spiel[2][1]) ? "disabled" : $disabled ;?>>
 <input type="submit" id="button09" name="C3"  value="<?php echo $spiel[2][2] ?>" <?php echo !empty($spiel[2][2]) ? "disabled" : $disabled ;?>>
-</div>
+
 <br>
 <br>
 <input type="submit" name="Neustart" value="Neustart" id="button10">
@@ -152,7 +152,7 @@ while(true) {                                                                   
 
     <?php 
     if(!empty($message)) {
-        echo $message;
+        echo "<br><input name='text' id='text' value=' $message' readonly> ";
     }
     ?>
 </form>
