@@ -1,3 +1,6 @@
+html{
+    zoom: 400%;
+}
 #button01,#button04,#button07{
     width: 30px; 
     height:30px;
@@ -6,6 +9,7 @@
     left: 37px;
     position:absolute;
     color:rgb(7, 53, 161);
+    
 }
 #button02,#button05,#button08{
     width: 30px; 
