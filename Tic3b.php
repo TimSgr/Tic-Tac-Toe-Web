@@ -128,20 +128,20 @@ while(true) {                                                                   
 
 ?>
 <!-- Senden des neuen Zugs -->
-<div>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 70px;" name="A1" value="<?php echo $spiel[0][0] ?>" <?php echo !empty($spiel[0][0]) ? "disabled" : $disabled ; ?>>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 35px;" name="A2" value="<?php echo $spiel[0][1] ?>" <?php echo !empty($spiel[0][1]) ? "disabled" : $disabled ;?>>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 0px;" name="A3" value="<?php echo $spiel[0][2] ?>"  <?php echo !empty($spiel[0][2]) ? "disabled" : $disabled ;?>> <br> <br>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 70px;" name="B1" value="<?php echo $spiel[1][0] ?>" <?php echo !empty($spiel[1][0]) ? "disabled" : $disabled ;?>>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 35px;" name="B2" value="<?php echo $spiel[1][1] ?>" <?php echo !empty($spiel[1][1]) ? "disabled" : $disabled ;?>>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 0px;" name="B3" value="<?php echo $spiel[1][2] ?>"  <?php echo !empty($spiel[1][2]) ? "disabled" : $disabled ;?>> <br><br>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 70px;" name="C1" value="<?php echo $spiel[2][0] ?>" <?php echo !empty($spiel[2][0]) ? "disabled" : $disabled ;?>>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 35px;" name="C2" value="<?php echo $spiel[2][1] ?>" <?php echo !empty($spiel[2][1]) ? "disabled" : $disabled ;?>>
-<input type="submit" style="width: 30px; height:30px; margin:0; padding:10px; position: absolute; left: 0px;" name="C3"  value="<?php echo $spiel[2][2] ?>" <?php echo !empty($spiel[2][2]) ? "disabled" : $disabled ;?>>
+<div> 
+<input type="submit" id="button01"  name="A1" value="<?php echo $spiel[0][0] ?>" <?php echo !empty($spiel[0][0]) ? "disabled" : $disabled ; ?>>
+<input type="submit" id="button02"  name="A2" value="<?php echo $spiel[0][1] ?>" <?php echo !empty($spiel[0][1]) ? "disabled" : $disabled ;?>>
+<input type="submit" id="button03" name="A3" value="<?php echo $spiel[0][2] ?>"  <?php echo !empty($spiel[0][2]) ? "disabled" : $disabled ;?>> <br> <br>
+<input type="submit" id="button04"  name="B1" value="<?php echo $spiel[1][0] ?>" <?php echo !empty($spiel[1][0]) ? "disabled" : $disabled ;?>>
+<input type="submit" id="button05"  name="B2" value="<?php echo $spiel[1][1] ?>" <?php echo !empty($spiel[1][1]) ? "disabled" : $disabled ;?>>
+<input type="submit" id="button06" name="B3" value="<?php echo $spiel[1][2] ?>"  <?php echo !empty($spiel[1][2]) ? "disabled" : $disabled ;?>> <br><br>
+<input type="submit" id="button07"  name="C1" value="<?php echo $spiel[2][0] ?>" <?php echo !empty($spiel[2][0]) ? "disabled" : $disabled ;?>>
+<input type="submit" id="button08"  name="C2" value="<?php echo $spiel[2][1] ?>" <?php echo !empty($spiel[2][1]) ? "disabled" : $disabled ;?>>
+<input type="submit" id="button09" name="C3"  value="<?php echo $spiel[2][2] ?>" <?php echo !empty($spiel[2][2]) ? "disabled" : $disabled ;?>>
 </div>
 <br>
 <br>
-<input type="submit" name="Neustart" value="Neustart">
+<input type="submit" name="Neustart" value="Neustart" id="button10">
 <br>
 <?php
 
