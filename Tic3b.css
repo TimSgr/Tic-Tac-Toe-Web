@@ -1,0 +1,29 @@
+#button01,#button04,#button07{
+    width: 30px; 
+    height:30px;
+    margin:0; 
+    padding:10px;
+    left: 37px;
+    position:absolute;
+}
+#button02,#button05,#button08{
+    width: 30px; 
+    height:30px; 
+    margin:0; 
+    padding:10px; 
+    left: 72px;
+    position:absolute;
+}
+#button03,#button06,#button09{
+    width: 30px;
+    height:30px; 
+    margin:0; 
+    padding:10px; 
+    left: 108px;
+    position:absolute;
+}
+#button10{
+    width: 22%;
+    margin-left: 6%;
+    margin-right: 6%   
+}
