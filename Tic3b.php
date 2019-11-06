@@ -19,6 +19,47 @@ function sieg($a,$spiel){
    }
 }
 
+function ki_next_move($spiel){
+
+    $ki_spiel=$spiel;
+           
+    for($e=0;$e<=2;$e++){
+        for($f=0;$f<=2;$f++){
+            if(($ki_spiel[$e][$f])!=null){
+                continue;
+            } 
+            $ki_spiel[$e][$f]="O";
+
+            $win=sieg("O",$ki_spiel);
+            if($win=="O"){
+                return $ki_spiel;
+            }
+            
+            $ki_spiel[$e][$f]=null;
+
+        }
+    }
+
+
+    while(true){                                                                                
+        $zufallszahl1 = rand(0, 8);
+        $spalte=intdiv($zufallszahl1, 3);
+        $zeile=$zufallszahl1%3;
+        //var_dump($spiel[$zeile][$spalte]);
+        if ($spiel[$spalte][$zeile]==null){ 
+            $spiel[$spalte][$zeile]="O"; 
+            //var_dump($spiel[$spalte][$zeile]);
+
+            break;
+        }    
+    }
+
+    return $spiel;
+
+}
+
+
+
 
 
 
@@ -42,12 +83,12 @@ $spiel = unserialize(base64_decode($_POST["1a"]));
 // Setzen des letzen Zugs
 
 
-if (isset($_POST['Neustart'])) unset($spiel);                                             // Wenn Nutzer den Neustart-Button klickt wird das Spielfeld zurückgesetzt
+if (isset($_POST['Neustart'])) unset($spiel);                            
        
 
-        echo "Spieler X ist an der Reihe";
+        echo "Spieler X ist an der Reihe<br>";
         
-        if (isset($_POST['A1'])&&$spiel[0][0]!="O")  {$spiel[0][0]="X" ;}                   // zweite bedingung nicht notwendig(entfernen?)
+        if (isset($_POST['A1'])&&$spiel[0][0]!="O")  {$spiel[0][0]="X" ;}                   
         if (isset($_POST['A2'])&&$spiel[0][1]!="O")  {$spiel[0][1]="X" ;}
         if (isset($_POST['A3'])&&$spiel[0][2]!="O")  {$spiel[0][2]="X" ;}
         if (isset($_POST['B1'])&&$spiel[1][0]!="O")  {$spiel[1][0]="X" ;}
@@ -57,8 +98,6 @@ if (isset($_POST['Neustart'])) unset($spiel);                                   
         if (isset($_POST['C2'])&&$spiel[2][1]!="O")  {$spiel[2][1]="X" ;}
         if (isset($_POST['C3'])&&$spiel[2][2]!="O")  {$spiel[2][2]="X" ;}
     
-    // Siegbedingungen für menschlichen Spieler
-    // in Funktion auslagern, da doppelt
     
     $sieger=sieg("X", $spiel);
     
@@ -73,38 +112,15 @@ if (isset($_POST['Neustart'])) unset($spiel);                                   
 <?php 
     $game=1;
     
-    $leere_felder = [];
-    // foreach($spiel as $key => $reihe) {
-    //     foreach($reihe as $k => $field) {
-    //         if(empty($field)) {
-    //            $leere_felder[] ... 
-    //         }
-    //     }
-    // }
-                                                                                                    // leere Felder zählen und zufall davon auswählen
-while(true) {                                                                                       // KI hat 100 Versuche um ein Feld zu erwischen, was noch nicht belegt ist
-      $zufallszahl1 = rand(1,9);        
-      //$leere_felder = [1,2,3];
-//$leere_felder[rand(1,count($leere_felder)-1]                                                      // Es wird eine Zufallszahl erzeugt, die sich zwischen eins und neun befindet
-      if ($zufallszahl1==1 && $spiel[0][0]!="X" && $spiel[0][0]!="O"){ $spiel[0][0]="O"; break;}    // Diese Zufallszahl entspricht einer Position im Array bzw Spielfeld und das Programm überprüft
-      if ($zufallszahl1==2 && $spiel[0][1]!="X" && $spiel[0][1]!="O"){ $spiel[0][1]="O"; break;}    // ob diese Position schon belegt ist und wenn nicht wird als Wert des Arrays an der Position
-      if ($zufallszahl1==3 && $spiel[0][2]!="X" && $spiel[0][2]!="O"){ $spiel[0][2]="O"; break;}    // "O" gesetzt.
-      if ($zufallszahl1==4 && $spiel[1][0]!="X" && $spiel[1][0]!="O"){ $spiel[1][0]="O"; break;}    // Wenn das Feld schon belegt ist, erhält das Programm die Anweisung erneut zu würfeln
-      if ($zufallszahl1==5 && $spiel[1][1]!="X" && $spiel[1][1]!="O"){ $spiel[1][1]="O"; break;}    
-      if ($zufallszahl1==6 && $spiel[1][2]!="X" && $spiel[1][2]!="O"){ $spiel[1][2]="O"; break;}
-      if ($zufallszahl1==7 && $spiel[2][0]!="X" && $spiel[2][0]!="O"){ $spiel[2][0]="O"; break;}
-      if ($zufallszahl1==8 && $spiel[2][1]!="X" && $spiel[2][1]!="O"){ $spiel[2][1]="O"; break;}
-      if ($zufallszahl1==9 && $spiel[2][2]!="X" && $spiel[2][2]!="O"){ $spiel[2][2]="O"; break;}
-    }
+    $spiel=ki_next_move($spiel);
+                                                                                               
+
     //Siegbedingung für KI
     $sieger=sieg("X", $spiel);
     if (!$sieger){ 
         $sieger=sieg("O", $spiel);
     }
-// echo"<pre>";
-//     var_dump($sieger);
-//     echo"</pre>";
- 
+
     
     if($sieger=="X") { $game=0; }
     elseif($sieger=="O") { $game=0;}
@@ -119,18 +135,12 @@ while(true) {                                                                   
         elseif($sieger=="O"){
             $x++;
         }
-    // echo"<pre>";
-    // var_dump($game);
-    // echo"</pre>";
-    if($game==0) {                                                                                                // $game==0 beschreibt den Endzustand des Spiels, also wenn entweder ein Spieler gewonnen hat, oder das Spielfeld belegt ist
+   
+    if($game==0) {                                                                                                
         $disabled = "disabled";
     } else  {
         $disabled = "";
     }
-    // echo"<pre>";
-    // var_dump($disabled);
-    // echo"</pre>";
-    // ermittle, wenn es keinen Gewinner gibt
 
    
 
@@ -139,10 +149,10 @@ while(true) {                                                                   
 
 <input type="submit" id="button01"  name="A1" value="<?php echo $spiel[0][0] ?>" <?php echo !empty($spiel[0][0]) ? "disabled" : $disabled ; ?>>
 <input type="submit" id="button02"  name="A2" value="<?php echo $spiel[0][1] ?>" <?php echo !empty($spiel[0][1]) ? "disabled" : $disabled ;?>>
-<input type="submit" id="button03" name="A3" value="<?php echo $spiel[0][2] ?>"  <?php echo !empty($spiel[0][2]) ? "disabled" : $disabled ;?>> <br> <br>
+<input type="submit" id="button03" name="A3" value="<?php echo $spiel[0][2] ?>"  <?php echo !empty($spiel[0][2]) ? "disabled" : $disabled ;?>> <br>
 <input type="submit" id="button04"  name="B1" value="<?php echo $spiel[1][0] ?>" <?php echo !empty($spiel[1][0]) ? "disabled" : $disabled ;?>>
 <input type="submit" id="button05"  name="B2" value="<?php echo $spiel[1][1] ?>" <?php echo !empty($spiel[1][1]) ? "disabled" : $disabled ;?>>
-<input type="submit" id="button06" name="B3" value="<?php echo $spiel[1][2] ?>"  <?php echo !empty($spiel[1][2]) ? "disabled" : $disabled ;?>> <br><br>
+<input type="submit" id="button06" name="B3" value="<?php echo $spiel[1][2] ?>"  <?php echo !empty($spiel[1][2]) ? "disabled" : $disabled ;?>> <br>
 <input type="submit" id="button07"  name="C1" value="<?php echo $spiel[2][0] ?>" <?php echo !empty($spiel[2][0]) ? "disabled" : $disabled ;?>>
 <input type="submit" id="button08"  name="C2" value="<?php echo $spiel[2][1] ?>" <?php echo !empty($spiel[2][1]) ? "disabled" : $disabled ;?>>
 <input type="submit" id="button09" name="C3"  value="<?php echo $spiel[2][2] ?>" <?php echo !empty($spiel[2][2]) ? "disabled" : $disabled ;?>>
