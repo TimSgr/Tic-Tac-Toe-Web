@@ -1,46 +1,65 @@
 html{
     zoom: 400%;
+    
 }
+
+input[type="submit"] {
+padding: 0;
+margin:0;
+}
+
 #button01,#button04,#button07{
     width: 30px; 
     height:30px;
-    margin:0; 
-    padding:10px;
-    left: 37px;
-    position:absolute;
+    margin:auto; 
+    padding:0px;
+    /* left: 37px; */
+    /* position:absolute; */
     color:rgb(7, 53, 161);
+    cursor: pointer !important;
     
 }
 #button02,#button05,#button08{
     width: 30px; 
     height:30px; 
-    margin:0; 
-    padding:10px; 
-    left: 72px;
-    position:absolute;
+    margin:auto; 
+    padding:0px; 
+    /* left: 72px; */
+    /* position:absolute; */
     color:rgb(7, 53, 161);
+    cursor: pointer !important;
 }
 #button03,#button06,#button09{
     width: 30px;
     height:30px; 
-    margin:0; 
-    padding:10px; 
-    left: 108px;
-    position:absolute;
+    margin:auto; 
+    padding:auto; 
+    /* left: 108px; */
+    /* position:absolute; */
     color:rgb(7, 53, 161);
+    cursor: pointer !important;
 }
 #button10{
     width: 22%;
-    margin-left: 6%;
-    margin-right: 6%   
+    /* margin-left: 6%; */
+    margin-right: 6%;   
+    cursor: pointer !important;
 }
 #text{
     color:green !important;
     width: 22%;
-    margin-left: 6%;
+    /* margin-left: 6%; */
     margin-right: 6%;
     border-style: solid;
     border-width: 1px;
     margin-top: 5px;
     
+}
+#spielstand{
+    width: 22%;
+    /* margin-left: 6%; */
+    margin-right: 6%;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 5px;
 }
